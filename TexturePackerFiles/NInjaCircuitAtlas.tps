@@ -178,6 +178,7 @@
         <key>fileList</key>
         <array>
             <filename>Player</filename>
+            <filename>World</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

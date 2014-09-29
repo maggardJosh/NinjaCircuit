@@ -1,8 +1,16 @@
 {"frames": {
 
+"floor":
+{
+	"frame": {"x":3,"y":3,"w":204,"h":80},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":23,"y":20,"w":204,"h":80},
+	"sourceSize": {"w":244,"h":100}
+},
 "player_01":
 {
-	"frame": {"x":31,"y":3,"w":24,"h":30},
+	"frame": {"x":31,"y":87,"w":24,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":30},
@@ -10,7 +18,7 @@
 },
 "player_02":
 {
-	"frame": {"x":3,"y":3,"w":24,"h":30},
+	"frame": {"x":3,"y":87,"w":24,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":30},
@@ -21,8 +29,8 @@
 	"version": "1.0",
 	"image": "NinjaCircuitAtlas.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":64},
+	"size": {"w":256,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2c668e0b3da96bd9325cef541fc8dc6f:062bf075460451491d0ab72b9a49e1ac:ec9f2b2c0c85fbceabe1c72683ae0d7c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:9c673cd70e223caa1ec92b25388e561c:d7132c91cf98faf81c22b717c2a7d223:ec9f2b2c0c85fbceabe1c72683ae0d7c$"
 }
 }
