@@ -12,6 +12,7 @@ public class C
     public const int SECTION_SIZE = 5;
 
     public const float floorWidth = 160f;
+    public const float floorHeight = 60f;
 
     public const int NUM_SECTIONS = 3;
 }

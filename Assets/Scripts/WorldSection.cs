@@ -20,7 +20,7 @@ public class WorldSection : FContainer
                 int index = i * C.SECTION_SIZE + j;
                 floorList[index] = Floor.getFloor(1);
                 floorLevels[i].AddChild(floorList[index]);
-                floorList[index].SetPosition(new Vector2((.5f + j) * C.floorWidth + i * C.floorAngleXOffset, 20 + 30 + (60 * i)));
+                floorList[index].SetPosition(new Vector2((.5f + j) * C.floorWidth + i * C.floorAngleXOffset, 20 + 30 + (C.floorHeight * i)));
             }
         }
         for (int i = C.SECTION_ROWS - 1; i >= 0; i--)

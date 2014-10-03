@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameScript : MonoBehaviour {
 
+    Player player;
 	// Use this for initialization
 	void Start () {
 
@@ -21,16 +22,13 @@ public class GameScript : MonoBehaviour {
         world.SetPosition(-Futile.screen.halfWidth, -Futile.screen.halfHeight);
         Futile.stage.AddChild(world);
 
-        FAnimatedSprite player = new FAnimatedSprite("player");
-        player.addAnimation(new FAnimation("run", new int[] { 1,2 },100,true));
-        player.play("run");
-        player.SetPosition(new Vector2(-Futile.screen.halfWidth + player.width / 2 + 30, -Futile.screen.halfHeight + 30 + 20 + 60 + player.height/2));
+        player = new Player();
         Futile.stage.AddChild(player);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+            
 	}
 }
