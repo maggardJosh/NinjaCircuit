@@ -32,13 +32,14 @@ public class FTmxMap : FContainer
         _layerNames = new List<string>();
         objects = new List<XMLNode>();
     }
-    public void LoadTMX(string fileName)
+    public bool LoadTMX(string fileName)
     {
         // load xml document
         TextAsset dataAsset = (TextAsset)Resources.Load(fileName, typeof(TextAsset));
         if (!dataAsset)
         {
             Debug.Log("FTiledScene: Couldn't load the xml data from: " + fileName);
+            return false;
         }
         string fileContents = dataAsset.ToString();
         Resources.UnloadAsset(dataAsset);
@@ -105,6 +106,7 @@ public class FTmxMap : FContainer
             }
         }
 
+        return true;
     }
 
     protected string getTilesetNameForID(int num)

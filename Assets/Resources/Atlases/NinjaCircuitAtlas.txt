@@ -1,6 +1,6 @@
 {"frames": {
 
-"floor":
+"floor_01":
 {
 	"frame": {"x":3,"y":3,"w":204,"h":80},
 	"rotated": false,
@@ -10,27 +10,35 @@
 },
 "player_01":
 {
-	"frame": {"x":3,"y":87,"w":59,"h":44},
+	"frame": {"x":3,"y":87,"w":45,"h":34},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":44},
-	"sourceSize": {"w":59,"h":44}
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":34},
+	"sourceSize": {"w":45,"h":34}
 },
 "player_02":
 {
-	"frame": {"x":3,"y":135,"w":51,"h":42},
+	"frame": {"x":211,"y":3,"w":41,"h":34},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":3,"y":2,"w":51,"h":42},
-	"sourceSize": {"w":59,"h":44}
+	"spriteSourceSize": {"x":1,"y":0,"w":41,"h":34},
+	"sourceSize": {"w":45,"h":34}
+},
+"tilemap_01":
+{
+	"frame": {"x":52,"y":87,"w":25,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":25},
+	"sourceSize": {"w":25,"h":25}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
 	"version": "1.0",
 	"image": "NinjaCircuitAtlas.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":256,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:5ebc07710f043ad2ef0842db5c3bc6bf:1a491c432b2e80b53709976f792538ff:ec9f2b2c0c85fbceabe1c72683ae0d7c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:967ad611c5532fa23fe9428ffa335b3a:55916e9ba596c93f81fbb2e4be493024:ec9f2b2c0c85fbceabe1c72683ae0d7c$"
 }
 }

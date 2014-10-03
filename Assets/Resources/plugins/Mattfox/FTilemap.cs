@@ -17,7 +17,7 @@ public class FTilemap : FContainer
 	protected FShader _shader;
 	
 	// list of all tiles
-	protected int[] _tileArray;
+	public int[] _tileArray;
 	protected List<FSprite> _tiles;
 	
 	// size of clipping

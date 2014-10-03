@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.3.3</string>
         <key>fileName</key>
-        <string>C:/Users/Josh/Documents/git/NinjaCircuit/TexturePackerFiles/NInjaCircuitAtlas.tps</string>
+        <string>C:/Users/Jif/git/NinjaCircuit/TexturePackerFiles/NInjaCircuitAtlas.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -136,7 +136,7 @@
             <key>java</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../../../../Program Files/CodeAndWeb/Assets/Resources/Atlases/atlasOne.java</filename>
+                <filename>Program Files/CodeAndWeb/Assets/Resources/Atlases/atlasOne.java</filename>
             </struct>
         </map>
         <key>multiPack</key>

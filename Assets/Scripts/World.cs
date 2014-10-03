@@ -6,21 +6,14 @@ using UnityEngine;
 
 public class World : FContainer
 {
-
+    WorldSection[] sections = new WorldSection[C.NUM_SECTIONS];
     public World()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < C.NUM_SECTIONS; i++)
         {
-            for (int j = 0; j < 3; j++)
-            {
-
-                FSprite floor = new FSprite("floor");
-                floor.sortZ = 3 - j;
-                if (RXRandom.Float() < .5f)
-                    this.AddChild(floor);
-                floor.SetPosition(new Vector2((.5f + i) * C.floorWidth, 20 + 30 + (60 * j)));
-            }
-            this.shouldSortByZ = true;
+            sections[i] = new WorldSection();
+            sections[i].SetPosition(C.SECTION_SIZE * C.floorWidth * i, 0);
+            this.AddChild(sections[i]);
         }
         Futile.instance.SignalUpdate += Update;
     }
