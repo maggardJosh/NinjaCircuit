@@ -18,6 +18,7 @@ public class SectionPreset
         presets = new List<SectionPreset>();
         int difficultyNumber = 1;
         int presetNumber = 1;
+        int presetCount = 0;
         while (true)
         {
 
@@ -41,6 +42,7 @@ public class SectionPreset
             }
 
             SectionPreset newPreset = new SectionPreset();
+            newPreset.sectionType = presetCount++;
             newPreset.loadArray(preset.tilemaps[0]._tileArray);
             presets.Add(newPreset);
 
@@ -50,6 +52,7 @@ public class SectionPreset
     private static List<SectionPreset> presets;
 
     public int[,] floorTypes;
+    public int sectionType = 0;
 
     private SectionPreset()
     {

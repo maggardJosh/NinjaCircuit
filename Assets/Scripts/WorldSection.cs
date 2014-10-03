@@ -8,8 +8,9 @@ public class WorldSection : FContainer
 {
     Floor[] floorList = new Floor[C.SECTION_ROWS * C.SECTION_SIZE];
     FContainer[] floorLevels = new FContainer[C.SECTION_ROWS];
+    public SectionPreset currentPreset;
 
-    public WorldSection()
+    public WorldSection(int lastSectionPreset = -1)
     {
         for (int i = 0; i < C.SECTION_ROWS; i++)
         {
@@ -19,20 +20,23 @@ public class WorldSection : FContainer
                 int index = i * C.SECTION_SIZE + j;
                 floorList[index] = Floor.getFloor(1);
                 floorLevels[i].AddChild(floorList[index]);
-                floorList[index].SetPosition(new Vector2((.5f + j) * C.floorWidth, 20 + 30 + (60 * i)));
+                floorList[index].SetPosition(new Vector2((.5f + j) * C.floorWidth + i * C.floorAngleXOffset, 20 + 30 + (60 * i)));
             }
         }
         for (int i = C.SECTION_ROWS - 1; i >= 0; i--)
             this.AddChild(floorLevels[i]);
-        LoadRandomPreset();
+        LoadRandomPreset(lastSectionPreset);
     }
 
-    public void LoadRandomPreset()
+    public void LoadRandomPreset(int lastSectionPreset)
     {
         SectionPreset s = SectionPreset.getRandomPreset();
+        while (s.sectionType == lastSectionPreset)      //Make sure we don't get the same preset twice in a row
+            s = SectionPreset.getRandomPreset();
+        this.currentPreset = s;
         for (int i = 0; i < C.SECTION_ROWS; i++)
             for (int j = 0; j < C.SECTION_SIZE; j++)
-                floorList[i * C.SECTION_SIZE + j].setFloorType(s.floorTypes[j,i]);
+                floorList[i * C.SECTION_SIZE + j].setFloorType(s.floorTypes[j, C.SECTION_ROWS - 1 - i]);
     }
 }
 

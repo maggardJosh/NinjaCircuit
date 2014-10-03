@@ -41,8 +41,7 @@ public class Floor : FContainer
     }
 
     public void setFloorType(int newFloorType)
-    {
-        RXDebug.Log(newFloorType);
+    {        
         floorSprite.isVisible = true;
         switch(newFloorType)
         {
