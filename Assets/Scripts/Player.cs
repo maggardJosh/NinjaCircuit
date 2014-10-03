@@ -29,12 +29,18 @@ public class Player : FContainer
 
     public void Update()
     {
+        int oldLevel = level;
         if (Input.GetKeyDown(KeyCode.UpArrow))
             level++;
         if (Input.GetKeyDown(KeyCode.DownArrow))
             level--;
         level = Mathf.Clamp(level, 0, C.SECTION_ROWS - 1);
-        playerSprite.SetPosition(levelZeroPosition + levelDisp * level);
+        if (oldLevel != level)
+        {
+            Go.killAllTweensWithTarget(playerSprite);
+            Vector2 newPos = levelZeroPosition + levelDisp * level;
+            Go.to(playerSprite, .3f, new TweenConfig().floatProp("x", newPos.x).floatProp("y", newPos.y).setEaseType(EaseType.QuadOut));
+        }
 
     }
 
