@@ -10,7 +10,7 @@ public class GameScript : MonoBehaviour {
         futileParams.AddResolutionLevel(568.0f, 1.0f, 1.0f, ""); // Scale up to 1136
 
         futileParams.origin = new Vector2(0.5f, 0.5f);
-        futileParams.backgroundColor = new Color(0, .08f, .313f);
+        futileParams.backgroundColor = new Color(0, .03f, .113f);
         futileParams.shouldLerpToNearestResolutionLevel = true;
 
         Futile.instance.Init(futileParams);

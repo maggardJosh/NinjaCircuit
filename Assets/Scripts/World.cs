@@ -18,7 +18,7 @@ public class World : FContainer
                 floor.sortZ = 3 - j;
                 if (RXRandom.Float() < .5f)
                     this.AddChild(floor);
-                floor.SetPosition(new Vector2((.5f + i) * C.sectionWidth, 20 + 30 + (60 * j)));
+                floor.SetPosition(new Vector2((.5f + i) * C.floorWidth, 20 + 30 + (60 * j)));
             }
             this.shouldSortByZ = true;
         }
