@@ -13,5 +13,5 @@ public class C
 
     public const float floorWidth = 160f;
 
-    public const int NUM_SECTIONS = 5;
+    public const int NUM_SECTIONS = 3;
 }
