@@ -282,7 +282,8 @@ public class FTilemap : FContainer
 		for (int i = 0; i < clipTilesWide; i++) {
 			for (int j = 0; j < clipTilesHigh; j++) {
 				int frame = _tileArray [i + (j * _tilesWide)];
-				
+                if(!C.createTilemapSprites)
+                    continue;
 				if (!_skipZero || frame > 0) {
 					FSprite sprite;
 					if (_skipZero) {

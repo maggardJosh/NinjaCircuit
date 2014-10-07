@@ -15,4 +15,5 @@ public class C
     public const float floorHeight = 60f;
 
     public const int NUM_SECTIONS = 3;
+    public const bool createTilemapSprites = false;
 }

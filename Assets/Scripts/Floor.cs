@@ -45,8 +45,8 @@ public class Floor : FContainer
         floorSprite.isVisible = true;
         switch(newFloorType)
         {
-            case 1: floorSprite.isVisible = false; break;
-            case 2: floorSprite.play("floor1"); break;
+            case 0: floorSprite.isVisible = false; break;
+            case 1: floorSprite.play("floor1"); break;
             default: RXDebug.Log("unknown floor type " + newFloorType); floorSprite.play("floor1"); break;
         }
     }
