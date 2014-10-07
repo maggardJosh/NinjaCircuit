@@ -31,6 +31,10 @@ public class WorldSection : FContainer
     public void LoadRandomPreset(int lastSectionPreset)
     {
         SectionPreset s = SectionPreset.getRandomPreset();
+        if (lastSectionPreset == -1)
+                s = SectionPreset.getPreset(0);
+        
+        
         while (s.sectionType == lastSectionPreset)      //Make sure we don't get the same preset twice in a row
             s = SectionPreset.getRandomPreset();
         this.currentPreset = s;

@@ -7,8 +7,10 @@ using UnityEngine;
 public class World : FContainer
 {
     WorldSection[] sections = new WorldSection[C.NUM_SECTIONS];
+    public float speed { get; set; }
     public World()
     {
+        speed = 0;
         for (int i = 0; i < C.NUM_SECTIONS; i++)
         {
             sections[i] = new WorldSection(i > 0 ? sections[i-1].currentPreset.sectionType : -1);
@@ -21,7 +23,7 @@ public class World : FContainer
     private int sectionInd = 0;
     private void Update()
     {
-        this.x -= C.speed * Time.deltaTime;
+        this.x -= speed * Time.deltaTime;
         float totalSectionWidth = C.SECTION_SIZE * C.floorWidth;
 
         if (this.x + Futile.screen.halfWidth + 50 < -totalSectionWidth)

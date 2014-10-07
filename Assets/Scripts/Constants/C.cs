@@ -4,7 +4,7 @@ using System.Collections;
 public class C
 {
     public const float floorAngleXOffset = 32f;
-    public static float speed = 500f;
+    
 
     public static bool isTransitioning = false;
 

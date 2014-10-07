@@ -21,7 +21,7 @@ public class GameScript : MonoBehaviour {
         World world = new World();
         world.SetPosition(-Futile.screen.halfWidth, -Futile.screen.halfHeight);
         Futile.stage.AddChild(world);
-
+        Go.to(world, 1.0f, new TweenConfig().floatProp("speed", 600f).setEaseType(EaseType.QuadIn));
         player = new Player();
         Futile.stage.AddChild(player);
 

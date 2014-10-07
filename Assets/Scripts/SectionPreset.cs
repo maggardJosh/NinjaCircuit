@@ -7,10 +7,18 @@ public class SectionPreset
 {
     public static SectionPreset getRandomPreset()
     {
+
         if (presets == null)
             LoadPresets();
+        return getPreset(RXRandom.Int(presets.Count));
+    }
 
-        return presets[RXRandom.Int(presets.Count)];
+    public static SectionPreset getPreset(int type)
+    {
+
+        if (presets == null)
+            LoadPresets();
+        return presets[type];
     }
 
     private static void LoadPresets()
