@@ -3,7 +3,7 @@ using System.Collections;
 
 public class C
 {
-    public const float floorAngleXOffset = 32f;
+    public const float floorAngleXOffset = 64f;
     
 
     public static bool isTransitioning = false;
@@ -11,8 +11,8 @@ public class C
     public const int SECTION_ROWS = 3;
     public const int SECTION_SIZE = 5;
 
-    public const float floorWidth = 160f;
-    public const float floorHeight = 60f;
+    public const float floorWidth = 320f;
+    public const float floorHeight = 120f;
 
     public const int NUM_SECTIONS = 3;
     public const bool createTilemapSprites = false;

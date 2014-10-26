@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class Player : FContainer
+public class Player : FContainer, FSingleTouchableInterface
 {
     public FAnimatedSprite playerSprite;
 
@@ -23,13 +23,19 @@ public class Player : FContainer
         
         levelDisp = new Vector2(C.floorAngleXOffset, C.floorHeight);
         playerSprite.SetPosition(levelZeroPosition + levelDisp * level);
-
+        EnableSingleTouch();
         Futile.instance.SignalUpdate += Update;
     }
 
+    private int swipeLevelChange = 0;
     public void Update()
     {
         int oldLevel = level;
+
+        level += swipeLevelChange;
+        swipeLevelChange = 0;
+        
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
             level++;
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -41,6 +47,30 @@ public class Player : FContainer
             Vector2 newPos = levelZeroPosition + levelDisp * level;
             Go.to(playerSprite, .3f, new TweenConfig().floatProp("x", newPos.x).floatProp("y", newPos.y).setEaseType(EaseType.QuadOut));
         }
+
+    }
+    Vector2 startPos = Vector2.zero;
+    Vector2 diff = Vector2.zero;
+    public bool HandleSingleTouchBegan(FTouch touch)
+    {
+        startPos = touch.position;   
+        return true;
+    }
+
+    public void HandleSingleTouchMoved(FTouch touch)
+    {
+        
+    }
+    public void HandleSingleTouchEnded(FTouch touch)
+    {
+        diff = touch.position - startPos;
+        if (diff.y > 100)
+            swipeLevelChange = 1;
+        else if (diff.y < -100)
+            swipeLevelChange = -1;
+    }
+    public void HandleSingleTouchCanceled(FTouch touch)
+    {
 
     }
 

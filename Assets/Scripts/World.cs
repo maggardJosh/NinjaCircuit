@@ -26,7 +26,7 @@ public class World : FContainer
         this.x -= speed * Time.deltaTime;
         float totalSectionWidth = C.SECTION_SIZE * C.floorWidth;
 
-        if (this.x + Futile.screen.halfWidth + 50 < -totalSectionWidth)
+        if (this.x + Futile.screen.halfWidth + 200 < -totalSectionWidth)
         {
             this.x += totalSectionWidth;
             for (int i = 0; i < sections.Length; i++)
