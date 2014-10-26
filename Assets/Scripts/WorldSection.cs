@@ -28,6 +28,26 @@ public class WorldSection : FContainer
         LoadRandomPreset(lastSectionPreset);
     }
 
+    public bool IsOnFloor(float x, int level)
+    {
+        int index = Mathf.FloorToInt((x - this.x) / C.floorWidth - 1.5f);
+        if (index < 0 || index >= C.SECTION_SIZE)
+        {
+            foreach (Floor f in floorList)
+                f.Dehighlight();
+            return false;   //Not even in this section
+        }
+
+
+        int floorListIndex = index + level * C.SECTION_SIZE;
+        floorList[floorListIndex].Highlight();
+        for (int i = 0; i < floorList.Length; i++)
+            if (i != floorListIndex)
+                floorList[i].Dehighlight();
+        
+        return currentPreset.floorTypes[index, level] == 1;
+    }
+
     public void LoadRandomPreset(int lastSectionPreset)
     {
         SectionPreset s = SectionPreset.getRandomPreset();
