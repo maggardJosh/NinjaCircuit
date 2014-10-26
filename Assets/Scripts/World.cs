@@ -59,8 +59,7 @@ public class World : FContainer
                 sectionInd = 0;
         }
 
-
-        IsOnFloor(player.x, player.level);
+        player.Update(this);
     }
 }
 
