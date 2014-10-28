@@ -9,7 +9,7 @@ public class Player : FContainer, FSingleTouchableInterface
     public FAnimatedSprite playerSprite;
     private FSprite shadow;
 
-    public int level = 1;
+    public float level = 1;
     private Vector2 levelZeroPosition;
     private Vector2 levelDisp;
 
@@ -40,29 +40,34 @@ public class Player : FContainer, FSingleTouchableInterface
         shadow.scale = 1 - (heightOffGround / JUMP_HEIGHT) * .3f;
         
     }
-
-
+    float transitionLevel = 0;
+    float transitionToLevel = 0;
+    private bool isTransitioning = false;
     private int swipeLevelChange = 0;
     public void Update(World world)
     {
+        if (isTransitioning)
+        {
+            TransitionLogic();
+            return;
 
-        int oldLevel = level;
+        }
+
+        float oldLevel = level;
 
         level += swipeLevelChange;
         swipeLevelChange = 0;
 
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            level++;
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            level--;
         level = Mathf.Clamp(level, 0, C.SECTION_ROWS - 1);
         if (oldLevel != level)
         {
-            Go.killAllTweensWithTarget(playerSprite);
-            Vector2 newPos = levelZeroPosition + levelDisp * level;
-            Go.to(playerSprite, .3f, new TweenConfig().floatProp("x", newPos.x).floatProp("y", newPos.y).setEaseType(EaseType.QuadOut));
+            transitionLevel = oldLevel;
+            transitionToLevel = level;
+            isTransitioning = true;
+            return;
         }
+
+        
 
         if (isJumping)
             JumpLogic();
@@ -71,7 +76,12 @@ public class Player : FContainer, FSingleTouchableInterface
 
         updateSpritePosition();
         if (!isJumping)
-            world.IsOnFloor(x, level);
+        {
+            if (!world.IsOnFloor(x, (int)level))
+            {
+                Fall();
+            }
+        }
         else
             world.IsOnFloor(-900, 1);
 
@@ -110,7 +120,7 @@ public class Player : FContainer, FSingleTouchableInterface
     private float heightOffGround = 0;
     private bool isJumping = false;
     float jumpCount = 0;
-    float jumpLength = 1.5f;
+    float jumpLength = .8f;
     private const float JUMP_HEIGHT = 120;
 
     private void JumpLogic()
@@ -126,6 +136,35 @@ public class Player : FContainer, FSingleTouchableInterface
 
     }
 
+    
+    float transitionCount = 0;
+    float transitionLength = .7f;
+
+    private void TransitionLogic()
+    {
+        transitionCount += Time.deltaTime;
+
+        heightOffGround = Mathf.Pow(Mathf.Sin((transitionCount / transitionLength) * Mathf.PI), .7f) * JUMP_HEIGHT;
+
+        level = (transitionToLevel - transitionLevel) * (transitionCount / transitionLength) + transitionLevel;
+
+        if (transitionCount > transitionLength)
+        {
+            level = transitionToLevel;
+            transitionCount = 0;
+            isTransitioning = false;
+            heightOffGround = 0;
+        }
+
+        updateSpritePosition();
+
+    }
+
+    bool isFalling = false;
+    private void Fall()
+    {
+        isFalling = true;   
+    }
 
 
     Vector2 startPos = Vector2.zero;
@@ -142,6 +181,8 @@ public class Player : FContainer, FSingleTouchableInterface
 
     public void HandleSingleTouchMoved(FTouch touch)
     {
+        if (isTransitioning)
+            hasStartedTouch = false;
         if (hasStartedTouch)
         {
             float yDiff = touch.position.y - startPos.y;
