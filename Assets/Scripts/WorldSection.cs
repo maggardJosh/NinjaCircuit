@@ -4,11 +4,31 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class WorldSection : FContainer
+public class WorldSection 
 {
     Floor[] floorList = new Floor[C.SECTION_ROWS * C.SECTION_SIZE];
-    FContainer[] floorLevels = new FContainer[C.SECTION_ROWS];
+    public FContainer[] floorLevels = new FContainer[C.SECTION_ROWS];
     public SectionPreset currentPreset;
+    private float _x;
+    
+    public float x
+    {
+        get { return _x; }
+        set
+        {
+            _x = value;
+            for (int i = 0; i < C.SECTION_ROWS; i++)
+            { 
+                floorLevels[i].x = value; 
+            }
+        }
+    }
+
+    public void MoveToFront()
+    {
+        for (int i = C.SECTION_ROWS-1; i >= 0; i--)
+            floorLevels[i].MoveToFront();
+    }
 
     public WorldSection(int lastSectionPreset = -1)
     {
@@ -23,8 +43,6 @@ public class WorldSection : FContainer
                 floorList[index].SetPosition(new Vector2((.5f + j) * C.floorWidth + i * C.floorAngleXOffset, 20 + 30 + (C.floorHeight * i)));
             }
         }
-        for (int i = C.SECTION_ROWS - 1; i >= 0; i--)
-            this.AddChild(floorLevels[i]);
         LoadRandomPreset(lastSectionPreset);
     }
 
@@ -45,7 +63,7 @@ public class WorldSection : FContainer
             if (i != floorListIndex)
                 floorList[i].Dehighlight();
         
-        return currentPreset.floorTypes[index, level] == 1;
+        return currentPreset.floorTypes[index, C.SECTION_ROWS- level-1] == 1;
     }
 
     public void LoadRandomPreset(int lastSectionPreset)

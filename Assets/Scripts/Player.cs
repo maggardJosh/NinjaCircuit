@@ -13,8 +13,11 @@ public class Player : FContainer, FSingleTouchableInterface
     private Vector2 levelZeroPosition;
     private Vector2 levelDisp;
 
-    public Player()
+    private World world;
+
+    public Player(World world)
     {
+        this.world = world;
         shadow = new FSprite("shadow");
         this.AddChild(shadow);
         shadow.alpha = .3f;
@@ -22,10 +25,10 @@ public class Player : FContainer, FSingleTouchableInterface
         playerSprite = new FAnimatedSprite("player");
         playerSprite.addAnimation(new FAnimation("run", new int[] { 1, 2 }, 100, true));
         playerSprite.play("run");
+        this.sortZ = 100;
         this.AddChild(playerSprite);
 
-
-        levelZeroPosition = new Vector2(-Futile.screen.halfWidth + playerSprite.width / 2 + 30, -Futile.screen.halfHeight + 30 + 20 + playerSprite.height / 2);
+        levelZeroPosition = new Vector2(-Futile.screen.halfWidth + playerSprite.width / 2 + 30, 20 + 30 + playerSprite.height / 2);
 
         levelDisp = new Vector2(C.floorAngleXOffset, C.floorHeight);
         updateSpritePosition();
@@ -35,22 +38,25 @@ public class Player : FContainer, FSingleTouchableInterface
 
     private void updateSpritePosition()
     {
-        playerSprite.SetPosition(levelZeroPosition + levelDisp * level + Vector2.up * staggerYValue + Vector2.right * staggerXValue + Vector2.up * heightOffGround);
-        shadow.SetPosition(levelZeroPosition + levelDisp * level + Vector2.up * staggerYValue + Vector2.right * staggerXValue);
-        shadow.scale = 1 - (heightOffGround / JUMP_HEIGHT) * .3f;
-        
+        playerSprite.SetPosition(Vector2.right * -world.getXScroll() + levelZeroPosition + levelDisp * level + Vector2.up * staggerYValue + Vector2.right * staggerXValue + Vector2.up * heightOffGround);
+        shadow.SetPosition(Vector2.right * -world.getXScroll() + levelZeroPosition + levelDisp * level + Vector2.up * staggerYValue + Vector2.right * staggerXValue);
+        shadow.scale = heightOffGround >= 0 ? 1 - (heightOffGround / JUMP_HEIGHT) * .3f : 0;
+
     }
-    float transitionLevel = 0;
-    float transitionToLevel = 0;
-    private bool isTransitioning = false;
+
     private int swipeLevelChange = 0;
     public void Update(World world)
     {
+        if (isFalling)
+        {
+            FallLogic();
+            return;
+        }
+
         if (isTransitioning)
         {
             TransitionLogic();
             return;
-
         }
 
         float oldLevel = level;
@@ -61,13 +67,15 @@ public class Player : FContainer, FSingleTouchableInterface
         level = Mathf.Clamp(level, 0, C.SECTION_ROWS - 1);
         if (oldLevel != level)
         {
+            
+            world.transitionPlayer(0);
             transitionLevel = oldLevel;
             transitionToLevel = level;
             isTransitioning = true;
             return;
         }
 
-        
+
 
         if (isJumping)
             JumpLogic();
@@ -136,7 +144,9 @@ public class Player : FContainer, FSingleTouchableInterface
 
     }
 
-    
+    float transitionLevel = 0;
+    float transitionToLevel = 0;
+    private bool isTransitioning = false;
     float transitionCount = 0;
     float transitionLength = .7f;
 
@@ -150,6 +160,7 @@ public class Player : FContainer, FSingleTouchableInterface
 
         if (transitionCount > transitionLength)
         {
+            world.transitionPlayer((int)transitionToLevel);
             level = transitionToLevel;
             transitionCount = 0;
             isTransitioning = false;
@@ -160,10 +171,36 @@ public class Player : FContainer, FSingleTouchableInterface
 
     }
 
+    float fallSpeed = 0;
+    bool respawn = false;
+    private void FallLogic()
+    {
+        
+        heightOffGround -= fallSpeed * Time.deltaTime;
+
+        fallSpeed += 1000 * Time.deltaTime;
+
+        if (respawn && heightOffGround <= 0)
+        {
+            heightOffGround = 0;
+            respawn = false;
+            isFalling = false;
+        }
+        if (heightOffGround < -500)
+        {
+            heightOffGround = 500;
+            respawn = true; 
+        }
+
+
+        updateSpritePosition();
+
+    }
     bool isFalling = false;
     private void Fall()
     {
-        isFalling = true;   
+        fallSpeed = 0;
+        isFalling = true;
     }
 
 
