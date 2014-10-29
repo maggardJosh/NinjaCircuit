@@ -186,12 +186,14 @@ public class Player : FContainer, FSingleTouchableInterface
             respawn = false;
             isFalling = false;
         }
+        if(heightOffGround < -50)
+            sortZ = -1;
         if (heightOffGround < -500)
         {
             heightOffGround = 500;
-            respawn = true; 
+            respawn = true;
+            sortZ = 100;
         }
-
 
         updateSpritePosition();
 
@@ -199,6 +201,7 @@ public class Player : FContainer, FSingleTouchableInterface
     bool isFalling = false;
     private void Fall()
     {
+     
         fallSpeed = 0;
         isFalling = true;
     }
