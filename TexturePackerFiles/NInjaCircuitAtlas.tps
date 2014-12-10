@@ -179,6 +179,7 @@
         <array>
             <filename>Player</filename>
             <filename>World</filename>
+            <filename>pressStart2P_0.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

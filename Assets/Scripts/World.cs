@@ -7,6 +7,7 @@ using UnityEngine;
 public class World : FContainer
 {
     Player player;
+    FLabel counter;
 
     WorldSection[] sections = new WorldSection[C.NUM_SECTIONS];
     public float speed { get; set; }
@@ -35,12 +36,16 @@ public class World : FContainer
             worldLayer[i].SetPosition(-Futile.screen.halfWidth, -Futile.screen.halfHeight);
             this.AddChild(worldLayer[i]);
         }
+        counter = new FLabel(C.fontOne, "Distance: 0ft");
+        counter.y = Futile.screen.halfHeight - 50;
+        this.AddChild(counter);
     }
 
     public float getXScroll()
     {
         return worldLayer[0].x;
     }
+
     public bool IsOnFloor(float x, int level)
     {
         for (int i = 0; i < sections.Length; i++)
@@ -49,11 +54,14 @@ public class World : FContainer
         return false;
     }
 
+    private float distance = 0;
     private int sectionInd = 0;
     private void Update()
     {
         for (int i = 0; i < C.SECTION_ROWS; i++)
             worldLayer[i].x -= speed * Time.deltaTime;
+        distance += (speed * Time.deltaTime) * (6/C.floorWidth);
+        counter.text = "Distance: " + distance.ToString("0.00") + "ft";
         float totalSectionWidth = C.SECTION_SIZE * C.floorWidth;
 
         if (worldLayer[0].x + Futile.screen.halfWidth + 200 < -totalSectionWidth)

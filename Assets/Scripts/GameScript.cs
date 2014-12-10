@@ -18,6 +18,8 @@ public class GameScript : MonoBehaviour {
 
         Futile.atlasManager.LoadAtlas("Atlases/NinjaCircuitAtlas");
 
+        Futile.atlasManager.LoadFont(C.fontOne, "pressStart2P_0", "Atlases/pressStart2P", 0,0);
+
         World world = new World();
         Futile.stage.AddChild(world);
         Go.to(world, 1.0f, new TweenConfig().floatProp("speed", 600f).setEaseType(EaseType.QuadIn));

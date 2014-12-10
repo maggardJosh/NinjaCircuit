@@ -16,4 +16,6 @@ public class C
 
     public const int NUM_SECTIONS = 3;
     public const bool createTilemapSprites = false;
+
+    public const string fontOne = "fontOne";
 }

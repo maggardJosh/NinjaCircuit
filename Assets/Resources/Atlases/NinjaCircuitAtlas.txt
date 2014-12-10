@@ -10,7 +10,7 @@
 },
 "isotilemap_01":
 {
-	"frame": {"x":3,"y":169,"w":25,"h":25},
+	"frame": {"x":365,"y":169,"w":25,"h":25},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":25},
@@ -18,7 +18,7 @@
 },
 "player_00":
 {
-	"frame": {"x":3,"y":407,"w":98,"h":86},
+	"frame": {"x":365,"y":215,"w":98,"h":86},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":86},
@@ -26,7 +26,7 @@
 },
 "player_01":
 {
-	"frame": {"x":3,"y":215,"w":100,"h":92},
+	"frame": {"x":261,"y":169,"w":100,"h":92},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":92},
@@ -34,7 +34,7 @@
 },
 "player_02":
 {
-	"frame": {"x":3,"y":311,"w":92,"h":92},
+	"frame": {"x":3,"y":305,"w":92,"h":92},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":92},
@@ -42,7 +42,7 @@
 },
 "player_03":
 {
-	"frame": {"x":3,"y":215,"w":100,"h":92},
+	"frame": {"x":261,"y":169,"w":100,"h":92},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":92},
@@ -58,7 +58,7 @@
 },
 "player_05":
 {
-	"frame": {"x":3,"y":215,"w":100,"h":92},
+	"frame": {"x":261,"y":169,"w":100,"h":92},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":92},
@@ -74,11 +74,19 @@
 },
 "player_07":
 {
-	"frame": {"x":3,"y":215,"w":100,"h":92},
+	"frame": {"x":261,"y":169,"w":100,"h":92},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":92},
 	"sourceSize": {"w":100,"h":94}
+},
+"pressStart2P_0":
+{
+	"frame": {"x":3,"y":169,"w":254,"h":92},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":254,"h":92},
+	"sourceSize": {"w":256,"h":256}
 },
 "shadow":
 {
@@ -95,6 +103,6 @@
 	"format": "RGBA8888",
 	"size": {"w":512,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:9c963ef7f8f6a2ec4fbf6e5065e4e891:aa989eca20737fc350769052ec3818c4:ec9f2b2c0c85fbceabe1c72683ae0d7c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fe2bb726b112c589ca4acc807c127a64:b4e4d5dad84d1529a4987067c46abc83:ec9f2b2c0c85fbceabe1c72683ae0d7c$"
 }
 }
